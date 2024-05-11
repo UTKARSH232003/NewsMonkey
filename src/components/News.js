@@ -127,7 +127,7 @@ export class News extends Component {
           <h2 className="text-center" style={{margin: '35px 0px' }}>NewsMonkey - Top Headlines from {this.capitalizeFirstLetterString(this.props.category)} category</h2>
 
           {/* {this.state.loading && <Spinner/>} */}
-          <InfiniteScroll dataLength={this.state.articles.length()} next={this.fetchMoreData} hasMore={this.state.articles.length() !== this.totalResults} loader={<h4>Loading...</h4>}>
+          <InfiniteScroll dataLength={this.state.articles.length} next={this.fetchMoreData} hasMore={this.state.articles.length !== this.totalResults} loader={<h4>Loading...</h4>}>
             <div className="d-flex justify-content-evenly">
             <div className="row">
               {this.state.articles.map((element) =>{ 
