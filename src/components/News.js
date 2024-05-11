@@ -39,17 +39,23 @@ export class News extends Component {
     console.log("this is constructor");
     this.state = {
       page: 1,
-      articles: this.articles,
+      articles:[],
+      // articles: this.articles,
       loading: false,
       totalResults: 0
     }
+    
     document.title = `${this.capitalizeFirstLetterString(props.category)} - NewsMonkey`;
     // document.title = `${this.props.category} - NewsMonkey`;
   }
   async updateNews(pageNo){
     const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({loading: true});
-    let data = await fetch(url);
+    let data = await fetch(url)
+            .catch(error => {
+              console.error('Error fetching articles:', error);
+            });
+
     let parsedData = await data.json()
     console.log(parsedData);
     this.setState({
