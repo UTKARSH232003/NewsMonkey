@@ -40,7 +40,8 @@ export class News extends Component {
     this.state = {
       page: 1,
       articles: this.articles,
-      loading: false
+      loading: false,
+      totalResults: 0
     }
     document.title = `${this.capitalizeFirstLetterString(props.category)} - NewsMonkey`;
     // document.title = `${this.props.category} - NewsMonkey`;
@@ -127,7 +128,8 @@ export class News extends Component {
           <h2 className="text-center" style={{margin: '35px 0px' }}>NewsMonkey - Top Headlines from {this.capitalizeFirstLetterString(this.props.category)} category</h2>
 
           {/* {this.state.loading && <Spinner/>} */}
-          <InfiniteScroll dataLength={this.state.articles.length} next={this.fetchMoreData} hasMore={this.state.articles.length !== this.totalResults} loader={<h4>Loading...</h4>}>
+          {/* <InfiniteScroll dataLength={this.state.articles.length} next={this.fetchMoreData} hasMore={this.state.articles.length !== this.totalResults} loader={<h4>Loading...</h4>}> */}
+          <InfiniteScroll dataLength={this.state.articles ? this.state.articles.length : 0} next={this.fetchMoreData} hasMore={this.state.articles && this.state.articles.length !== this.totalResults} loader={<h4>Loading...</h4>}>
             <div className="d-flex justify-content-evenly">
             <div className="row">
               {this.state.articles.map((element) =>{ 
